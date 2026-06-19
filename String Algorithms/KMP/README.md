@@ -2,7 +2,7 @@
 The Knuth-Morris-Pratt (KMP) algorithm was introduced in 1977 by Donald E. Knuth, James H. Morris, Jr., and Vaughan R. Pratt 
 as an solution for string matching problems and successfully achieved a linear-time by avoiding unnecessary comparisons.
 Before we begin analyzing the algorithm, let's take a look at the naive approach.
-##Naive algorithm
+## Naive algorithm
 ```
 def search_pattern2(s,t):
 
@@ -29,3 +29,11 @@ than one matches (let's say k matches) we will need k spaces to assign to 'out' 
 | ***Time***  | **O(nm)**   |
 |***Space***  | **O(m + k)**|
 
+## Maximal-Boundries
+Boundry is a stric substring or word from the word w which at the same time is strict suffix and stric prefix. What is stric? It means that the length of the boundry must be less than the length of w. A *Maximal-Boundry* is the longest boundryof a word which is indicated with **β(w)**.
+```
+|a|b|a|a|b|a|b|a|a|
+          |a|b|a|a|b|a|b|a|a|
+```
+*abaa* is the maximal-boundry of the word *abaababaa*.
+Imagine we can set a check point in the pattern matching process for the *last longest boundry*. The important point is that each boundry has its own boundry, and each of those boundries have their own.
