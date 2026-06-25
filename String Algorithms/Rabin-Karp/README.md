@@ -29,7 +29,7 @@ Now you might think this is not enough for all languages in the world. You're ri
 It represents a large prime number. The idea is to use it as modulus to keep the hash value small, because as you can see with only a multiplication the value might explode. Prime numbers tend to work better and prevent collisons--when there are two different strings with equal hash value.
 ## ROlling Hash
 Instead of calculating the value of the hash from scratch everytime, the algorithm simply updates the value. Since there are equal number of operations everytime, the complexity is in constant time O(1) making much efficient.
-<p align = center>$H_new$ = ($H_old$ - $x_0$ * $128^{m-1}$)*128+$x_3$</p>
+<p align = center>$H_{new}$ = ($H_{old}$ - $x_0$ * $128^{m-1}$)* 128 + $x_3$ </p>
 
 ### Visual example
 ```
@@ -60,6 +60,6 @@ Now character by character comparison.
 ```
 ## Complexity
 Complexity of this code is O(m +n) just like KMP. However as mentioned before in the worst case senario in which every window has the same hash as the pattern, the complexity rises to O(mn). Simply because it is operating character by character comparisons.
-##Refrences
+## Refrences
 <p>[1] Richard M. Karp; Michael O. Rabin; Efficient randomized pattern-matching algorithms.</p>
 <p>[2] Christoph Dürr and Jill-Jênn Vie. Competitive Programming in Python: 128 Algorithms to Develop Your Coding Skills.</p>
