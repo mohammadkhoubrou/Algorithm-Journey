@@ -16,6 +16,7 @@ Each topic aims to include:
 The repository will continue to grow as I study new topics in computer science, covering areas such as:
 
 *Data Structures
+*String Algorithms
 
 My goal is to build a personal reference while sharing a structured learning journey with anyone interested in algorithms and problem solving.
 
