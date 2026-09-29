@@ -254,3 +254,176 @@ $$g(n) \in \theta(f(n))$$ and $$f(n) \in \theta(g(n))$$</br>
 $$f(n) \in O(g(n))$$ and $$g(n) \in \Omega(f(n))$$</br>
 $$f(n) \in o(g(n))$$ and $$g(n) \in \omega(f(n))$$
 
+## Calculating Time Complexity
+
+As it was mentioned before, time complexity is explained through the total number of execution of each component.
+
+```
+for (i=1 to n) --> n + 1 times
+  write("*") --> n times
+```
+So the condition of i <= n is checked n + 1 times, n times execution and True condition, once i is passed n.
+
+| Iteration | `i` | Condition `i ≤ n` (`n = 5`) | `write("*")` |
+|---:|---:|:---:|:---:|
+| 1 | 1 | True | `*` |
+| 2 | 2 | True | `*` |
+| 3 | 3 | True | `*` |
+| 4 | 4 | True | `*` |
+| 5 | 5 | True | `*` |
+| 6 | 6 | False | — |
+
+$$\theta(n)$$
+---------------------------------------
+```
+for (i=a to b) --> b - a + 2 times
+  write("*") --> b - a + 1 times
+```
+| Iteration | `i` | Condition `i ≤ b` | `write("*")` |
+| --------: | --: | :---------------: | :----------: |
+|         1 |   2 |        True       |      `*`     |
+|         2 |   3 |        True       |      `*`     |
+|         3 |   4 |        True       |      `*`     |
+|         4 |   5 |        True       |      `*`     |
+|         5 |   6 |       False       |       —      |
+
+$$\theta(b - a + 1)$$
+-------------------------------------------
+
+```
+for (i = 1 to n)
+  for (i = 1 to n)
+    write("*")
+```
+| Outer Iteration | `i` | Inner Iteration | `j` | Inner Condition `j ≤ n` | `write("*")` |
+| --------------: | --: | --------------: | --: | :---------------------: | :----------: |
+|               1 |   1 |               1 |   1 |           True          |      `*`     |
+|               1 |   1 |               2 |   2 |           True          |      `*`     |
+|               1 |   1 |               3 |   3 |           True          |      `*`     |
+|               1 |   1 |               4 |   4 |          False          |       —      |
+|               2 |   2 |               1 |   1 |           True          |      `*`     |
+|               2 |   2 |               2 |   2 |           True          |      `*`     |
+|               2 |   2 |               3 |   3 |           True          |      `*`     |
+|               2 |   2 |               4 |   4 |          False          |       —      |
+|               3 |   3 |               1 |   1 |           True          |      `*`     |
+|               3 |   3 |               2 |   2 |           True          |      `*`     |
+|               3 |   3 |               3 |   3 |           True          |      `*`     |
+|               3 |   3 |               4 |   4 |          False          |       —      |
+|               4 |   4 |               — |   — |          False          |       —      |
+
+$$\theta(n^2)$$
+-----------------------------------
+
+
+```
+for (i = 1 to n)
+  for (j = 1 to i)
+    write("*")
+```
+| Outer Iteration | `i` | Inner Iteration | `j` | Condition `j ≤ i` | `write("*")` |
+| --------------: | --: | --------------: | --: | :---------------: | :----------: |
+|               1 |   1 |               1 |   1 |        True       |      `*`     |
+|               1 |   1 |               2 |   2 |       False       |       —      |
+|               2 |   2 |               1 |   1 |        True       |      `*`     |
+|               2 |   2 |               2 |   2 |        True       |      `*`     |
+|               2 |   2 |               3 |   3 |       False       |       —      |
+|               3 |   3 |               1 |   1 |        True       |      `*`     |
+|               3 |   3 |               2 |   2 |        True       |      `*`     |
+|               3 |   3 |               3 |   3 |        True       |      `*`     |
+|               3 |   3 |               4 |   4 |       False       |       —      |
+|               4 |   4 |               1 |   1 |        True       |      `*`     |
+|               4 |   4 |               2 |   2 |        True       |      `*`     |
+|               4 |   4 |               3 |   3 |        True       |      `*`     |
+|               4 |   4 |               4 |   4 |        True       |      `*`     |
+|               4 |   4 |               5 |   5 |       False       |       —      |
+|               5 |   5 |               — |   — |       False       |       —      |
+
+$$\theta(n^2)$$
+-----------------------------------------
+
+```
+for (i = 1 to n)
+  for (j = 1 to i)
+    for (k = 1 to j)
+      write("*")
+```
+for n = 4:
+
+| Outer `i` | Middle `j` | Inner `k` | Condition `k ≤ j` | `write("*")` |
+| --------: | ---------: | --------: | :---------------: | :----------: |
+|         1 |          1 |         1 |        True       |      `*`     |
+|         1 |          1 |         2 |       False       |       —      |
+|         2 |          1 |         1 |        True       |      `*`     |
+|         2 |          1 |         2 |       False       |       —      |
+|         2 |          2 |         1 |        True       |      `*`     |
+|         2 |          2 |         2 |        True       |      `*`     |
+|         2 |          2 |         3 |       False       |       —      |
+|         3 |          1 |         1 |        True       |      `*`     |
+|         3 |          1 |         2 |       False       |       —      |
+|         3 |          2 |         1 |        True       |      `*`     |
+|         3 |          2 |         2 |        True       |      `*`     |
+|         3 |          2 |         3 |       False       |       —      |
+|         3 |          3 |         1 |        True       |      `*`     |
+|         3 |          3 |         2 |        True       |      `*`     |
+|         3 |          3 |         3 |        True       |      `*`     |
+|         3 |          3 |         4 |       False       |       —      |
+|         4 |          1 |         1 |        True       |      `*`     |
+|         4 |          1 |         2 |       False       |       —      |
+|         4 |          2 |         1 |        True       |      `*`     |
+|         4 |          2 |         2 |        True       |      `*`     |
+|         4 |          2 |         3 |       False       |       —      |
+|         4 |          3 |         1 |        True       |      `*`     |
+|         4 |          3 |         2 |        True       |      `*`     |
+|         4 |          3 |         3 |        True       |      `*`     |
+|         4 |          3 |         4 |       False       |       —      |
+|         4 |          4 |         1 |        True       |      `*`     |
+|         4 |          4 |         2 |        True       |      `*`     |
+|         4 |          4 |         3 |        True       |      `*`     |
+|         4 |          4 |         4 |        True       |      `*`     |
+|         4 |          4 |         5 |       False       |       —      |
+
+$$\theta(n^3)$$
+--------------------------------------------
+
+```
+i = n
+while (i > 1)
+  write("*")
+  i = i - 2
+```
+| Iteration | `i` (before) | Condition `i > 1` | `write("*")` | `i` (after) |
+| --------: | -----------: | :---------------: | :----------: | ----------: |
+|         1 |            7 |        True       |      `*`     |           5 |
+|         2 |            5 |        True       |      `*`     |           3 |
+|         3 |            3 |        True       |      `*`     |           1 |
+|         4 |            1 |       False       |       —      |           — |
+
+$$\theta(n)$$
+---------------------------------------------
+
+```
+i = n
+while (i > 1)
+  write("*")
+  i = i // 2
+```
+| Iteration | `i` (before) | Condition `i > 1` | `write("*")` | `i` (after) |
+| --------: | -----------: | :---------------: | :----------: | ----------: |
+|         1 |           20 |        True       |      `*`     |          10 |
+|         2 |           10 |        True       |      `*`     |           5 |
+|         3 |            5 |        True       |      `*`     |           2 |
+|         4 |            2 |        True       |      `*`     |           1 |
+|         5 |            1 |       False       |       —      |           — |
+
+$$\theta(log n)$$
+------------------------------------------------
+
+```
+i = n
+while (i < n)
+  write("*")
+  i = i * 2
+```
+
+
+$$\theta(
